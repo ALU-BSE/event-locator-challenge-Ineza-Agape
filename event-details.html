@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Event Details</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -11,30 +11,52 @@
       background: linear-gradient(120deg, #7b1e1e 0%, #a83232 100%) ;
       min-height: 100vh;
     }
+    .main-content {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 80vh;
+    }
     .event-card {
       background: #7b1e1ed9;
       border: none;
       border-radius: 16px;
       box-shadow: 0px 5px 15px #0000002e;
-      padding: 28px 24px 20px 24px;
+      padding: 32px 32px 24px 32px;
       margin-bottom: 32px;
       color: #fff;
       transition: 0.3s;
-      max-width: 500px;
+      max-width: 650px;
       width: 100%;
+      font-size: 1.18rem;
     }
     .event-card h4 {
       color: #ffdd57;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 2rem;
     }
-    .event-card p {
+    .event-card .event-meta {
       color: #fff;
       font-size: 1.08rem;
+      margin-bottom: 4px;
+    }
+    .event-card .event-location {
+      color: #fff;
+      font-size: 1.08rem;
+      margin-bottom: 12px;
+    }
+    .event-card .event-description {
+      color: #fff;
+      font-size: 1.15rem;
       margin-bottom: 8px;
+      line-height: 1.6;
     }
     .back-btn {
-      margin-top: 32px;
+      margin-top: 0;
+      margin-bottom: 32px;
       display: flex;
       justify-content: center;
     }
@@ -44,14 +66,18 @@
       background: #fff;
       font-weight: 600;
       border-radius: 8px;
-      padding: 10px 32px;
+      padding: 14px 32px;
       transition: 0.2s;
-      max-width: 500px;
+      max-width: 650px;
       width: 100%;
+      font-size: 1.15rem;
     }
     .back-btn .btn:hover {
       background: #7b1e1e;
       color: #fff;
+    }
+    .spacer {
+      height: 40px;
     }
   </style>
 </head>
@@ -60,13 +86,13 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const events = [
-        { id: 1, title: "Strictly Soul", date: "20-03-2025", category: "Music", location: "Atelier du Vin", description: "An electrifying RnB concert in the city!" },
-        { id: 2, title: "Tech Meetup", date: "15-04-2025", category: "Tech", location: "Norrsken Kigali", description: "A networking event for tech enthusiasts." },
-        { id: 3, title: "Football Match", date: "10-05-2025", category: "Sports", location: "Amahoro Stadium", description: "An exciting football match between top teams!" },
-        { id: 4, title: "Gakondo Art Exhibition", date: "05-06-2025", category: "Art & Culture", location: "Inema Arts Center", description: "An inspiring exhibition featuring local artists." },
-        { id: 5, title: "Food Festival", date: "12-07-2025", category: "Food & Drink", location: "Car Free Zone", description: "Taste delicious food from around the continent!" },
-        { id: 6, title: "Business Networking Brunch", date: "20-08-2025", category: "Business & Networking", location: "The HUT Restaurant", description: "Connect with business leaders and entrepreneurs." },
-        { id: 7, title: "Community Clean-Up/ Umuganda", date: "05-09-2025", category: "Community Outreach", location: "Gasabo District", description: "Join us for a community clean-up and Umuganda." }
+        { id: 1, title: "Strictly Soul", date: "20-03-2025", category: "Music", location: "Atelier du Vin", description: "Get ready for an unforgettable evening of soulful RnB vibes!<br>This intimate event features a talented DJ spinning the best RnB tracks from classic hits to modern favorites.<br>Enjoy smooth melodies, powerful vocals, bottomless drinks, and an atmosphere that will have you swaying all night long.<br><b>You can't afford to miss this!!</b>" },
+        { id: 2, title: "Tech Meetup", date: "15-04-2025", category: "Tech", location: "Norrsken Kigali", description: "Join fellow tech enthusiasts for an evening of innovation and networking!<br>This meetup will feature talks from local startups, hands-on workshops on emerging technologies, and plenty of time to connect with like-minded professionals.<br>Whether you're a developer, entrepreneur, or just tech-curious, you'll find inspiration and new opportunities here." },
+        { id: 3, title: "Football Match", date: "10-05-2025", category: "Sports", location: "Amahoro Stadium", description: "Experience the thrill of live football at Rwanda's premier stadium!<br>Watch as APR and Rayon Sport, two of Rwanda's most influential football clubs, battle it out in what promises to be an action-packed match.<br>With passionate fans, energetic atmosphere, and world-class facilities.<br>Come early for the pre-match excitement!" },
+        { id: 4, title: "Gakondo Art Exhibition", date: "05-06-2025", category: "Art & Culture", location: "Inema Arts Center", description: "Immerse yourself in the rich cultural heritage of Rwanda through contemporary art!<br>This exhibition showcases the works of talented local artists who blend traditional Rwandan heritage with modern artistic techniques.<br>Each piece tells a story of our nation's past, present, and future." },
+        { id: 5, title: "Food Festival", date: "12-07-2025", category: "Food & Drink", location: "Car Free Zone", description: "Embark on a culinary journey across Africa without leaving Kigali!<br>This vibrant food festival brings together the continent's finest flavors, from spicy West African dishes to best East African specialties.<br>Sample street food, attend cooking demonstrations, and learn about traditional cooking methods.<br>With live music and cultural performances, this is a feast for everyone!" },
+        { id: 6, title: "Business Networking Brunch", date: "20-08-2025", category: "Business & Networking", location: "The HUT Restaurant", description: "Engage with meaningful connections over delicious food!<br>This exclusive brunch event brings together entrepreneurs, business leaders, and professionals from various industries.<br>Enjoy a good meal while participating in networking sessions, listening to inspiring success stories, and discovering potential collaborations." },
+        { id: 7, title: "Community Clean-Up/ Umuganda", date: "05-09-2025", category: "Community Outreach", location: "Kimihurura Park", description: "Join your neighbors in this traditional Rwandan community service event!<br>Umuganda is more than just cleaning - it's about building stronger communities and taking pride in our shared spaces.<br>We'll be cleaning the park, planting trees, and working together to make our district more beautiful.<br>After the work, enjoy refreshments and celebrate our collective achievement. Everyone is welcome!" }
       ];
 
       function getEventDetails() {
@@ -79,18 +105,17 @@
 
       if (event) {
         container.innerHTML = `
-          <div class="row justify-content-center">
-            <div class="col-md-6 d-flex flex-column align-items-center" style="margin-top: 80px;">
-              <div class="event-card mb-4">
-                <h4>${event.title}</h4>
-                <p>${event.date} | ${event.category}</p>
-                <p><strong>Location:</strong> ${event.location}</p>
-                <p>${event.description}</p>
-              </div>
-              <div class="back-btn">
-                <a href="events.html" class="btn">Back to Events</a>
-              </div>
+          <div class="main-content" style="margin-top: 24px;">
+            <div class="event-card">
+              <h4>${event.title}</h4>
+              <div class="event-meta">${event.date} | ${event.category}</div>
+              <div class="event-location"><strong>Location:</strong> ${event.location}</div>
+              <div class="event-description">${event.description}</div>
             </div>
+            <div class="back-btn">
+              <a href="events.html" class="btn">Back to Events</a>
+            </div>
+            <div class="spacer"></div>
           </div>
         `;
       } else {
